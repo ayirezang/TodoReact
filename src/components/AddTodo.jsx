@@ -8,11 +8,15 @@ const AddTodo = ({ handleAddTask }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (input.trim() === "") {
+      //empty task
+      alert("cannot be empty!");
+      return;
+    }
     let newTask = { task: input, id: uuid() };
     handleAddTask(newTask); //add input to the list directly
-    // setTasks((prev) => [...prev, newTask]);
+
     setInput("");
-    // setInput((prev) => [...prev, input]);
   };
 
   return (

@@ -10,26 +10,30 @@ const App = () => {
     setTasks((prev) => [...prev, newTask]);
   };
 
-  function deleteTask(id) {
+  function deleteTask(id, newTask) {
     setTasks(tasks.filter((tasks) => tasks.id !== id)); //deleting task
   }
-  // function updatedTask(id, taskUpdated) {
-  // setCont(
-  // cont.map((task) => {
-  // if (task.id === id) {
-  // return taskUpdated;
-  // } else {
-  // return task;
-  // }
-  // })
-  // );
-  // }
+  function updateTask(id, newTask) {
+    const editedTask = tasks.map((task) =>
+      task.id === id ? { ...task, task: newTask.task } : task
+    );
+    setTasks(editedTask); // ✅ Correct, setting the updated task list
+  }
 
   return (
     <div className="min-h-screen  flex flex-col justify-center items-center bg-gray-100 py-10    ">
       <div className="w-[600px] bg-white shadow-lg rounded-lg p-6">
-        <AddTodo handleAddTask={handleAddTask} deleteTask={deleteTask} />
-        <TodoList tasks={tasks} deleteTask={deleteTask} />
+        <AddTodo
+          handleAddTask={handleAddTask}
+          deleteTask={deleteTask}
+          updateTask={updateTask}
+        />
+        <TodoList
+          tasks={tasks}
+          deleteTask={deleteTask}
+          handleAddTask={handleAddTask}
+          updateTask={updateTask}
+        />
       </div>
     </div>
   );
