@@ -17,7 +17,7 @@ const App = () => {
     const editedTask = tasks.map((task) =>
       task.id === id ? { ...task, task: newTask.task } : task
     );
-    setTasks(editedTask); // ✅ Correct, setting the updated task list
+    setTasks(editedTask); //  setting the updated task list
   }
 
   return (
